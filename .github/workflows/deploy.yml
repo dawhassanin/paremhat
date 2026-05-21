@@ -19,4 +19,5 @@ jobs:
           password: ${{ secrets.SFTP_PASSWORD }}
           local_path: './*'
           remote_path: '/public_html/'
+          sftp_only: true
           sftpArgs: '-o ConnectTimeout=5'

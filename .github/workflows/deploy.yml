@@ -1,0 +1,22 @@
+name: Deploy to IONOS
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Deploy to IONOS
+        uses: wlixcc/SFTP-Deploy-Action@1.0.0
+        with:
+          server: ${{ secrets.SFTP_SERVER }}
+          port: ${{ secrets.SFTP_PORT }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          local_path: './*'
+          remote_path: '/public_html/'
+          sftpArgs: '-o ConnectTimeout=5'
